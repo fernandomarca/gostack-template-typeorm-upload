@@ -23,6 +23,8 @@ class ImportTransactionsService {
 
     const parsers = csvParse({
       from_line: 2,
+      rtrim: true,
+      ltrim: true,
     });
 
     const parseCSV = contactsReadStrean.pipe(parsers);
@@ -46,6 +48,8 @@ class ImportTransactionsService {
         category,
       });
     });
+
+    // console.log(categories);
 
     await new Promise(resolve => parseCSV.on('end', resolve));
 
